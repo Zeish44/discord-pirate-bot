@@ -5,7 +5,6 @@ const bbrun = require('./bbrun.json');
 const path = require('path');
 const fs = require('fs');
 const dotenv = require('dotenv');
-const envConfig = dotenv.parse(fs.readFileSync('.env'));
 
 
 const client = new CommandoClient({
@@ -20,10 +19,6 @@ client.registry
     ])
     .registerCommandsIn(path.join(__dirname, 'commands'))
     ;
-
-for (const k in envConfig) {
-    process.env[k] = envConfig[k]
-}
 
 function Savebbq() {
     fs.writeFile("./bbq.json", JSON.stringify(bbq, null, 4), (err) => {
